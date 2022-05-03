@@ -1,0 +1,62 @@
+-- Procedury
+    # CORE
+    bookTitle: uzupełnianie tabeli Book tytułami
+    generateBookAuthor: uzupełnianie tabeli Book_author
+    generateBookGenre: uzupełnianie tabeli Book_genre
+
+    # DELETE
+    deleteAuthor: usuwa autora i wszystkie jego książki
+    deleteBook: usuwa książkę
+    deleteGenre: usuwa gatunek i wszystkie książki z nim związane
+    deletePublisher: usuwa wydawcę i wszystkie jego książki
+    deleteAuthorsBook: usuwa książkę danego autora
+
+    # DISPLAY
+    displayAllBooks: pokazuje wszystkie książki z tabeli Book
+    displayAuthorsBooks: pokazuje książki danego autora
+    displayOrderContent: pokazuje jakie książki są w wybranym zamówieniu
+    displayPublisherBook: pokazuje książki danego wydawcy
+    displayUserData: pokazuje informacje o danym użytkowniku z bazy
+    displayUserOrders: pokazuje zamówienia klienta
+
+    # GET
+    getAuthorId: zwraca id autora na podstawie jego/jej imienia i nazwiska
+    getBookPrice: zwraca cenę książki na podstawie jej id
+    getGenreId: zwraca id gatunku na podsatawie nazwy
+    getPublisher: zwraca id wydawnictwa na podstawie jego nazwy
+    getUserPassword: zwraca hasło na podstawie loginu użytkownika
+    getUserType: zwraca typ użytkownika na podstawie jego id
+    getUserID: zwraca id użytkownika na podstawie loginu
+
+
+    # INSERT
+    insertAuthor: sprawdza, czy wprowadzony autor już istnieje w naszej bazie, jak nie to dodaje go do tabeli Author
+    insertGenre: sprawdza, czy wprowadzony gatunek już istnieje w naszej bazie, jak nie to dodaje go do tabeli Genre
+    insertPublisher: sprawdza, czy wprowadzony wydawca już istnieje w naszej bazie, jak nie to dodaje go do tabeli Publisher
+    insertUser: sprawdza, czy wprowadzony login już istnieje, jak nie to dodaje użytkownika do tabeli User
+    insertBookAuthor: sprawdza, czy przy dodawaniu książki jest ona napisana przez jednego z autorów występujących w bazie, jak
+                      nie, to dodajemy autora do tabeli Author, a następnie dodajemy book_id oraz author_id do tabeli Book_author
+    insertBookGenre: sprawdza, czy przy dodawaniu książki jest ona napisana przez jednego z gatunek występujących w bazie, jak nie,
+                     to dodajemy gatunek do tabeli Genre, a następnie dodajemy book_id oraz genre_id do tabeli Book_genre
+    insertBook: dodaje książkę
+    insertOrder: dodaje zamówienie
+    insertBookOrder: dodaje książkę do zamówienia
+
+    # RANDOM
+    changeUserPassword: zmienia hasło użytkownika
+    checkLogin: sprawdza, czy podany logi istnieje już w bazie
+    raise: podwyższenie cen książek danego wydawcy o dany procent, pod warunkiem, że
+           żadna cena nie przekroczy maksymalnej wartości (w przypadku naszej bazy jest to 2137)
+    sale: obniżenie cen książek danego wydawcy o dany procent, pod warunkiem, że żadna
+          cena nie będzie niższa od minimalnej wartości (w przypadku naszej bazy jest to 13)
+
+
+-- Triggery
+    registerAuthor: po rejestracji autora, zostaje on dodany do tabeli Author, jeśli jeszcze w niej nie występuje
+    deleteAuthor: przed usunięciem autora, usuwamy wszystkie dane o książkach, które napisał (w tabelach Book, Book_author i Book_genre)
+    deletePublisher: przed usunięciem wydawcy, usuwamy wszystkie dane o książkach, które zostały przez niego wydane
+                     (w tabelach Book, Book_author i Book_genre)
+    deleteGenre: przed usunięciem gatunku, usuwamy wszystkie dane o książkach, które pod niego podchodzą
+                 (w tabelach Book, Book_author i Book_genre)
+    deleteBook: przed usunięciem książki, usuwamy dane o ich autorach i gatunku
+    insertProduct: po wprowadzeniu nowej książki do tabeli Book, wprawoadzamy ją do tabeli Products
